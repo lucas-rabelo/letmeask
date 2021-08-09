@@ -1,3 +1,4 @@
+import { FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Illustration from '../assets/illustration.svg';
@@ -9,6 +10,13 @@ import { Button } from '../components/Button';
 import '../styles/auth.scss';
 
 export function NewRoom() {
+
+    const [newRoom, setNewRoom] = useState('');
+
+    async function handleCreateRoom(event: FormEvent) {
+        event.preventDefault();
+    }
+
     return(
         <div id="page-auth">
             <aside>
@@ -20,10 +28,11 @@ export function NewRoom() {
                 <div className="main-content">
                     <img src={LogoImg} alt="Letmeask" />
                     <h2>Criar uma nova sala</h2>
-                    <form>
+                    <form onSubmit={handleCreateRoom}>
                         <input 
                             type="text"
                             placeholder="Nome da sala" 
+                            onChange={event => setNewRoom(event.target.value)}
                         />
                         <Button>
                             Criar sala
