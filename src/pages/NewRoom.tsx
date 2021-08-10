@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Illustration from '../assets/illustration.svg';
 import LogoImg from '../assets/logo.svg';
+import GoogleImg from '../assets/google-icon.svg';
 
 import { Button } from '../components/Button';
 
