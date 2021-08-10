@@ -2,18 +2,18 @@ import { FormEvent, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 // assets
-import LogoSvg from '../assets/logo.svg'; 
+import LogoSvg from '../../assets/logo.svg'; 
 
 // components
-import { Button } from '../components/Button';
-import { RoomCode } from '../components/RoomCode';
+import { Button } from '../../components/Button';
+import { RoomCode } from '../../components/RoomCode';
 
 // hook
-import { useAuth } from '../hooks/useAuth';
-import { database } from '../services/firebase';
+import { useAuth } from '../../hooks/useAuth';
+import { database } from '../../services/firebase';
 
 // styles
-import '../styles/room.scss';
+import './styles.scss';
 
 type FirebaseQuestions = Record<string, {
     author: {

@@ -2,19 +2,19 @@ import { FormEvent, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 // assets
-import Illustration from '../assets/illustration.svg';
-import LogoImg from '../assets/logo.svg';
+import Illustration from '../../assets/illustration.svg';
+import LogoImg from '../../assets/logo.svg';
 
 // components
-import { Button } from '../components/Button';
+import { Button } from '../../components/Button';
 
 // hook
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 
 // services
-import { database } from '../services/firebase';
+import { database } from '../../services/firebase';
 
-import '../styles/auth.scss';
+import './styles.scss';
 
 export function NewRoom() {
 

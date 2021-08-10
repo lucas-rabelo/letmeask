@@ -1,8 +1,8 @@
 // assets
-import CopySvg from '../assets/copy.svg';
+import CopySvg from '../../assets/copy.svg';
 
 // styles
-import '../styles/room-code.scss';
+import './styles.scss';
 
 type RoomCodeProps = {
     code: string;

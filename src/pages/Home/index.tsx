@@ -2,21 +2,21 @@ import { FormEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 // hook
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 
 // firebase
-import { database } from '../services/firebase';
+import { database } from '../../services/firebase';
 
 // assets
-import Illustration from '../assets/illustration.svg';
-import LogoImg from '../assets/logo.svg';
-import GoogleImg from '../assets/google-icon.svg';
+import Illustration from '../../assets/illustration.svg';
+import LogoImg from '../../assets/logo.svg';
+import GoogleImg from '../../assets/google-icon.svg';
 
 // components
-import { Button } from '../components/Button';
+import { Button } from '../../components/Button';
 
 // styles
-import '../styles/auth.scss';
+import './styles.scss';
 
 export function Home() {
 
