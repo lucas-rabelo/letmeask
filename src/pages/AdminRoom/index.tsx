@@ -1,8 +1,8 @@
-import { FormEvent, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 // assets
 import LogoSvg from '../../assets/logo.svg'; 
+import DeleteSvg from '../../assets/delete.svg'; 
 
 // components
 import { Button } from '../../components/Button';
@@ -10,7 +10,7 @@ import { Question } from '../../components/Question';
 import { RoomCode } from '../../components/RoomCode';
 
 // hook
-import { useAuth } from '../../hooks/useAuth';
+// import { useAuth } from '../../hooks/useAuth';
 import { useRoom } from '../../hooks/useRoom';
 
 // database
@@ -25,37 +25,28 @@ type RoomParams = {
 
 export function AdminRoom() {
 
-    const { user } = useAuth();
+    // const { user } = useAuth();
+    const history = useHistory();
     const params = useParams<RoomParams>();
     const roomId = params.id;
     const { questions, title } = useRoom(roomId);
 
-    const [newQuestion, setNewQuestion] = useState('');
+    async function handleEndRoom() {
+        await database.ref(`rooms/${roomId}`).update({
+            endedAt: new Date(),
+        });
 
-    async function handleSendQuestion(event: FormEvent) {
-        event.preventDefault();
+        history.push('/');
+    }
 
-        if(newQuestion.trim() === '') {
-            return;
+    async function handleDeleteQuestion(questionId: string) {
+        if( window.confirm('Você tem certeza que deseja excluir essa pergunta?') ) {
+            await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
         }
+    }
 
-        if(!user) {
-            throw new Error('You must be logged in');
-        }
-
-        const question = {
-            content: newQuestion,
-            author: {
-                name: user.name,
-                avatar: user.avatar,
-            },
-            isHighlighted: false,
-            isAnswered: false
-        }
-
-        await database.ref(`rooms/${roomId}/questions`).push(question);
-
-        setNewQuestion('');
+    function handleLogoutRoom() {
+        history.push('/');
     }
 
     return(
@@ -65,7 +56,8 @@ export function AdminRoom() {
                     <img src={LogoSvg} alt="Letmeask" />
                     <div>
                         <RoomCode code={roomId} />
-                        <Button isOutLined>Encerrar sala</Button>
+                        <Button isOutLined onClick={handleEndRoom}>Encerrar sala</Button>
+                        <Button onClick={handleLogoutRoom}>Sair</Button>
                     </div>
                 </div>
             </header>
@@ -83,7 +75,14 @@ export function AdminRoom() {
                                 key={question.id}
                                 content={question.content}
                                 author={question.author}
-                            />
+                            >
+                                <button
+                                    type="button"
+                                    onClick={() => handleDeleteQuestion(question.id)}
+                                >
+                                    <img src={DeleteSvg} alt="Remover pergunta" />
+                                </button>
+                            </Question>
                         );
                     })}
                 </div>
