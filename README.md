@@ -42,7 +42,7 @@ O app estará disponível no seu browser pelo endereço http://localhost:3000.
 
 Lembrando que será necessário criar uma conta no [Firebase](https://firebase.google.com/) e um projeto para disponibilizar um Realtime Database.
 
-Após criar o seu App no [Firebase](https://firebase.google.com/) em seguida, defina no arquivo .env.local as configurações do seu App (remova o example do arquivo .env.example).
+Após criar o seu projeto no [Firebase](https://firebase.google.com/) em seguida, defina no arquivo .env.local as configurações do seu projeto (remova o example do arquivo .env.example).
 
 ```bash
 # Coloque entre áspas as suas credenciais do firebase.
